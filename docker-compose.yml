@@ -1,0 +1,22 @@
+services:
+  kalilinux:
+    hostname: kalilinux.lab
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: 'csalab/kalilinux-docker:latest'
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - ${BIND:-0.0.0.0:8080}:8080
+      - ${CUSTOM_BIND:-0.0.0.0:3000}:3000
+    environment:
+      - SHELL=/bin/bash
+      - PASSWORD=${PASSWORD:-kalilinux}
+    volumes:
+      - data:/home/kali/Desktop
+    entrypoint: ["/bin/bash", "/startup.sh"]
+
+volumes:
+  data: {}
