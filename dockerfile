@@ -1,5 +1,4 @@
 FROM kalilinux/kali-rolling:latest
-LABEL maintainer="admin@csalab.id"
 
 # Update package sources and install GPG keys first
 RUN apt-get update && \
